@@ -1,0 +1,7 @@
+com\hctco\controlechaves\config\CorsConfig.class
+com\hctco\controlechaves\repositories\RegistroRepository.class
+com\hctco\controlechaves\config\CorsConfig$1.class
+com\hctco\controlechaves\entities\Registro.class
+com\hctco\controlechaves\ControlechavesApplication.class
+com\hctco\controlechaves\services\RegistroService.class
+com\hctco\controlechaves\controllers\RegistroController.class
