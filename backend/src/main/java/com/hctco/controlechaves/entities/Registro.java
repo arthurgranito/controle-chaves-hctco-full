@@ -16,17 +16,19 @@ public class Registro implements Serializable {
     private String chave;
     private Instant dataRetirada;
     private String matricula;
-    public Boolean noPrazo;
+    private Boolean noPrazo;
+    private Boolean entregue;
 
     public Registro() {
     }
 
-    public Registro(Long id, String chave, Instant dataRetirada, String matricula, Boolean noPrazo) {
+    public Registro(Long id, String chave, Instant dataRetirada, String matricula, Boolean noPrazo,Boolean entregue) {
         this.id = id;
         this.chave = chave;
         this.dataRetirada = dataRetirada;
         this.matricula = matricula;
         this.noPrazo = noPrazo;
+        this.entregue = entregue;
     }
 
     public Long getId() {
@@ -67,6 +69,14 @@ public class Registro implements Serializable {
 
     public void setNoPrazo(Boolean noPrazo) {
         this.noPrazo = noPrazo;
+    }
+
+    public Boolean getEntregue() {
+        return entregue;
+    }
+
+    public void setEntregue(Boolean entregue) {
+        this.entregue = entregue;
     }
 
     @Override

@@ -81,7 +81,9 @@ const Cadastro = ({ onCadastroSucesso }) => {
           matricula: matricula,
           chave: chave,
           dataRetirada: dataRetirada.toISOString(),
-          noPrazo: noPrazo
+          noPrazo: noPrazo,
+          entregue: false,
+          dataEntrega: null,
         };
 
         await axios

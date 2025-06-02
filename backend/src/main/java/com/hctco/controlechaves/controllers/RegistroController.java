@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/registros")
@@ -51,5 +52,11 @@ public class RegistroController {
         registro = service.update(id, registro);
 
         return ResponseEntity.ok().body(registro);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Registro> atualiarParcialmente(@PathVariable Long id, @RequestBody Map<String, Object> camposAtualizados) {
+        Registro registroAtualizado = service.atualizarParcialmente(id, camposAtualizados);
+        return ResponseEntity.ok(registroAtualizado);
     }
 }
