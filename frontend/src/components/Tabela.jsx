@@ -211,7 +211,7 @@ const Tabela = ({ chaves, onAtualizarChaves }) => {
             <TabsContent value="vencidos">
               <Table>
                 <TableCaption>
-                  Lista com todas as chaves que ainda não foram devolvidas.
+                  Lista com todas as chaves que ainda não foram devolvidas e passaram do prazo.
                 </TableCaption>
                 <TableHeader>
                   <TableRow>
