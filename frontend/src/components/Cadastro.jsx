@@ -24,7 +24,7 @@ const Cadastro = ({ onCadastroSucesso }) => {
     try {
       const response = await axios.get(urlAPI);
       const data = response.data;
-      return data.some((registro) => registro.chave === chave);
+      return data.some((registro) => (registro.chave === chave && registro.entregue === false));
     } catch (error) {
       console.error("Erro ao buscar registros:", error);
       return false;
