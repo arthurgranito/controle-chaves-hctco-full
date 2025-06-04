@@ -24,7 +24,20 @@ const Cadastro = ({ onCadastroSucesso }) => {
     try {
       const response = await axios.get(urlAPI);
       const data = response.data;
-      return data.some((registro) => (registro.chave === chave && registro.entregue === false));
+      return data.some(
+        (registro) => registro.chave === chave && registro.entregue === false
+      );
+    } catch (error) {
+      console.error("Erro ao buscar registros:", error);
+      return false;
+    }
+  };
+
+  const matriculaJaRegistrada = async (matricula) => {
+    try {
+      const response = await axios.get(urlAPI);
+      const data = response.data;
+      return data.some((registro) => registro.matricula === matricula && registro.entregue === false);
     } catch (error) {
       console.error("Erro ao buscar registros:", error);
       return false;
@@ -58,6 +71,7 @@ const Cadastro = ({ onCadastroSucesso }) => {
       }).showToast();
     } else {
       const chaveRegistrada = await chaveJaRegistrada(chave);
+      const matriculaRegistrada = await matriculaJaRegistrada(matricula);
 
       if (chaveRegistrada) {
         Toastify({
@@ -73,9 +87,22 @@ const Cadastro = ({ onCadastroSucesso }) => {
         }).showToast();
 
         return;
+      } else if (matriculaRegistrada) {
+        Toastify({
+          text: "Esse funcionário já está com uma chave!",
+          duration: 3000,
+          close: true,
+          gravity: "bottom",
+          position: "left",
+          stopOnFocus: true,
+          style: {
+            background: "#fb2c36",
+          },
+        }).showToast();
       } else {
         const dataRetirada = new Date();
-        const noPrazo = Date.now() - dataRetirada.getTime() <= 12 * 60 * 60 * 1000;
+        const noPrazo =
+          Date.now() - dataRetirada.getTime() <= 12 * 60 * 60 * 1000;
 
         const registroRetirada = {
           matricula: matricula,
@@ -134,7 +161,7 @@ const Cadastro = ({ onCadastroSucesso }) => {
       >
         <CardContent className="space-y-2">
           <div className="space-y-1">
-            <Label htmlFor="matricula">Matrícula</Label>
+            <Label htmlFor="matricula">Matrícula ou Nome Completo</Label>
             <Input
               id="matricula"
               value={matricula}
